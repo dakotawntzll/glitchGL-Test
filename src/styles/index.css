@@ -78,7 +78,7 @@ main {
 			rgb(220, 220, 220),
 			rgb(255, 255, 255)
 		),
-		url("/src/assets/noise.svg");
+		url("../assets/noise.svg");
 	
 	padding: 0.3rem 0.75rem;
 	/* padding-left: 5rem; */
