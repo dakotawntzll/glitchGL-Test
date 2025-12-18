@@ -28,7 +28,7 @@ html {
 body {
 	min-height: 100vh;
 	background: #0b0b0f;
-	font-family: "Space Grotesk","BBH Bartle", sans-serif;
+	font-family: monospace;
 }
 
 main {
@@ -85,6 +85,7 @@ main {
 	height: 103%;
 	background-color: rgb(255, 255, 255);
 	mix-blend-mode: difference;
+	pointer-events: none;
 }
 
 .hero-text{
@@ -93,6 +94,8 @@ main {
 	color: black;
 	text-align: left;
 	letter-spacing: 0.05em;
+	text-shadow: 1px 1px 10px rgb(0, 0, 0);
+	min-width: fit-content;
 }
 
 .hero-text-title {
