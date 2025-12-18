@@ -1,0 +1,71 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	font: inherit;
+}
+
+html {
+	scrollbar-gutter: stable both-edges;
+	background: #0b0b0f;
+}
+
+body {
+	min-height: 100vh;
+}
+
+main {
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.hero {
+	width: min(1100px, 100%);
+}
+
+.stack {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	overflow: hidden;
+}
+
+.layer {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+}
+
+.layer-back {
+	filter: contrast(120%);
+	background: #00ff62;
+}
+
+.layer-front {
+	background: #000000;
+
+	/* SVG mask */
+	-webkit-mask-image: url(#revealMask);
+	mask-image: url(#revealMask);
+
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+
+	/* These help in some engines */
+	-webkit-mask-size: 100% 100%;
+	mask-size: 100% 100%;
+}
+
+.defs {
+	position: absolute;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
