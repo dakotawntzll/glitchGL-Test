@@ -85,7 +85,7 @@ main {
 	z-index: 3;
 	top: -0.6rem;
 	right: 0.35rem;
-	width: 28.2rem;
+	width: 58.5%;
 	height: 103%;
 	background-color: rgb(255, 255, 255);
 	mix-blend-mode: difference;
@@ -96,7 +96,7 @@ main {
 	position: relative;
 	z-index: 2;
 	color: black;
-	text-align: left;
+	text-align: right;
 	letter-spacing: 0.05em;
 	text-shadow: 1px 1px 10px rgb(0, 0, 0);
 	min-width: fit-content;
@@ -113,7 +113,7 @@ main {
 	font-size: 1.5rem;
 	font-weight: 400;
 	width: 100%;
-	text-align: right;
+	/* text-align: right; */
 }
 
 .hero-text-inverse{
@@ -156,7 +156,7 @@ main {
 	.hero-text-container::after{
 		top: -0.4rem;
 		right: 0.25rem;
-		width: 14rem;
+		width: 58%;
 		height: 110%;
 	}
 
