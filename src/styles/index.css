@@ -128,3 +128,34 @@ main {
 	object-fit: cover;
 	object-position: center center;
 }
+
+
+@media (max-width: 50rem) {
+
+	.hero-text-container{
+		padding: 0.1rem 0.3rem;
+
+		border-right: 3px solid rgb(127, 127, 127);
+		border-bottom: 3px solid rgb(44, 44, 44);
+	}
+
+	.hero-text-container::after{
+		top: -0.6rem;
+		right: 0.25rem;
+		width: 13.5rem;
+		height: 115%;
+	}
+
+	.hero {
+		aspect-ratio: 5 / 3;
+	}
+
+	.hero-text-title {
+		font-size: 1.5rem;
+		padding-left: 1rem;
+	}
+
+	.hero-text-subtitle {
+		font-size: 1rem;
+	}
+}
