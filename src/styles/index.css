@@ -28,7 +28,7 @@ html {
 body {
 	min-height: 100dvh;
 	background: #0b0b0f;
-	font-family: monospace;
+	font-family: "Cousine", "Google Sans Code", monospace;
 }
 
 main {
@@ -47,12 +47,14 @@ main {
 .hero {
 	position: relative;
 	width: 100%;
-	aspect-ratio: 16 / 5;
+	aspect-ratio: 16 / 7;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: flex-start;
 	text-transform: uppercase;
+
+	padding: 0 5rem;
 
 	/* NEED TO REPLACE THIS AND BAKE IT IN */
 	filter: grayscale(700%) sepia(100%) hue-rotate(90deg);
@@ -65,9 +67,11 @@ main {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	gap: 0.1rem;
 
 	background-color: white;
-	padding: 0.3rem 0.55rem;
+	padding: 0.3rem 0.75rem;
+	/* padding-left: 5rem; */
 
 	mix-blend-mode: difference;
 
@@ -80,8 +84,8 @@ main {
 	position: absolute;
 	z-index: 3;
 	top: -0.6rem;
-	right: 0.25rem;
-	width: 26.5rem;
+	right: 0.35rem;
+	width: 28.2rem;
 	height: 103%;
 	background-color: rgb(255, 255, 255);
 	mix-blend-mode: difference;
@@ -96,18 +100,18 @@ main {
 	letter-spacing: 0.05em;
 	text-shadow: 1px 1px 10px rgb(0, 0, 0);
 	min-width: fit-content;
+	line-height: 1;
 }
 
 .hero-text-title {
 	font-size: 3rem;
-	font-weight: 900;
-	padding-left: 5rem;
+	font-weight: 700;
 }
 
 
 .hero-text-subtitle {
 	font-size: 1.5rem;
-	font-weight: 600;
+	font-weight: 400;
 	width: 100%;
 	text-align: right;
 }
@@ -125,25 +129,35 @@ main {
 
 	width: 100%;
 	height: 100%;
+	
 	object-fit: cover;
 	object-position: center center;
+
+	transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+    -moz-transform:rotateY(180deg); /* Firefox */
+}
+
+.glitched-asset-container{
+	background-color: black;
 }
 
 
-@media (max-width: 50rem) {
+@media (max-width: 60rem) {
 
 	.hero-text-container{
 		padding: 0.1rem 0.3rem;
+		padding-left: 0.5rem;
 
 		border-right: 3px solid rgb(127, 127, 127);
 		border-bottom: 3px solid rgb(44, 44, 44);
 	}
 
 	.hero-text-container::after{
-		top: -0.6rem;
+		top: -0.4rem;
 		right: 0.25rem;
-		width: 13.5rem;
-		height: 115%;
+		width: 14rem;
+		height: 110%;
 	}
 
 	.hero {
@@ -152,7 +166,6 @@ main {
 
 	.hero-text-title {
 		font-size: 1.25rem;
-		padding-left: 0.5rem;
 	}
 
 	.hero-text-subtitle {

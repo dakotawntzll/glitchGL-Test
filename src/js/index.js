@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
 	const glitchEffect = glitchGL({
-		target: ".glitchGL",
+		target: ".glitchGL", 
 		intensity: 4.0,
 		interaction: {
 			enabled: true,
 			shape: "square",
-			customSize: "200vw",
+			customSize: "80vw",
 			effects: {
 				pixelation: [],
 				crt: [
@@ -32,18 +32,18 @@ document.addEventListener("DOMContentLoaded", () => {
 				pixelSize: 10,
 				pixelShape: "square",
 				bitDepth: "none",
-				dithering: "floyd-steinberg",
+				dithering: "bayer",
 				pixelDirection: "square",
 			},
 			crt: {
 				enabled: true,
 				preset: "computer-monitor",
-				curvature: 1,
-				lineDirection: "left",
+				curvature: 3,
+				lineDirection: "down",
 				lineMovement: true,
-				lineSpeed: 0.3,
-				brightness: 0.15,
-				phosphorGlow: 2.5,
+				lineSpeed: 0.1,
+				brightness: 0.35,
+				phosphorGlow: 1,
 				scanlineIntensity: 0.2,
 			},
 			glitch: {
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				rgbShift: 0,
 				digitalNoise: 0.35,
 				lineDisplacement: 0,
-				bitCrushDepth: 7,
+				bitCrushDepth: 4,
 				signalDropoutFreq: 0.03,
 				signalDropoutSize: 0.4,
 				syncErrorFreq: 0.085,
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				interferenceIntensity: 1,
 				frameGhostAmount: 0.68,
 				stutterFreq: 0.4,
-				datamoshStrength: 0.7,
+				datamoshStrength: 0.75,
 			},
 		},
 		on: {
@@ -321,5 +321,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			createASCIIShift(el, { dur: 1000, spread: 1 });
 		});
 	};
-	initASCIIShift();
+	initASCIIShift(); // end ASCII shift init
+
+
 });
