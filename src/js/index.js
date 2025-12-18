@@ -42,8 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
 				lineDirection: "down",
 				lineMovement: true,
 				lineSpeed: 0.1,
-				brightness: 0.35,
-				phosphorGlow: 1,
+				brightness: 0.25,
+				phosphorGlow: 1.2,
 				scanlineIntensity: 0.2,
 			},
 			glitch: {
