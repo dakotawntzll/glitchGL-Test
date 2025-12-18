@@ -54,7 +54,7 @@ main {
 	align-items: flex-start;
 	text-transform: uppercase;
 
-	padding: 0 5rem;
+	padding: 0 0.5rem 0 5rem;
 
 	/* NEED TO REPLACE THIS AND BAKE IT IN */
 	filter: grayscale(700%) sepia(100%) hue-rotate(90deg);
@@ -147,7 +147,6 @@ main {
 
 	.hero-text-container{
 		padding: 0.1rem 0.3rem;
-		padding-left: 0.5rem;
 
 		border-right: 3px solid rgb(127, 127, 127);
 		border-bottom: 3px solid rgb(44, 44, 44);
@@ -162,6 +161,7 @@ main {
 
 	.hero {
 		aspect-ratio: 5 / 3;
+		padding-left: 0.5rem;
 	}
 
 	.hero-text-title {
