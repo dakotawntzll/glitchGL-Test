@@ -74,7 +74,7 @@ main {
 	border-right: 5px solid rgb(127, 127, 127);
 	border-bottom: 5px solid rgb(44, 44, 44);
 }
-
+/* 
 .hero-text-container::after{
 	content: "";
 	position: absolute;
@@ -86,7 +86,7 @@ main {
 	background-color: rgb(255, 255, 255);
 	mix-blend-mode: difference;
 	pointer-events: none;
-}
+} */
 
 .hero-text{
 	position: relative;
@@ -95,7 +95,7 @@ main {
 	text-align: left;
 	letter-spacing: 0.05em;
 	text-shadow: 1px 1px 10px rgb(0, 0, 0);
-	min-width: fit-content;
+	/* min-width: fit-content; */
 }
 
 .hero-text-title {
