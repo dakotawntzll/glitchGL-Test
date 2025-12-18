@@ -10,13 +10,25 @@
 	font: inherit;
 }
 
+
+img,
+picture,
+svg,
+video {
+	display: block;
+	max-width: 100%;
+}
+
 html {
-	scrollbar-gutter: stable both-edges;
-	background: #0b0b0f;
+	color-scheme: dark light;
+	scrollbar-width: thin;
+	scrollbar-color: rgb(59, 59, 59) #181818;
 }
 
 body {
 	min-height: 100vh;
+	background: #0b0b0f;
+	font-family: "Space Grotesk","BBH Bartle", sans-serif;
 }
 
 main {
@@ -26,46 +38,90 @@ main {
 	align-items: center;
 }
 
-.hero {
-	width: min(1100px, 100%);
+.container {
+	width: 90%;
+	max-width: 1200px;
+	margin: 0 auto;
 }
 
-.stack {
+.hero {
 	position: relative;
 	width: 100%;
-	aspect-ratio: 16 / 9;
-	overflow: hidden;
+	aspect-ratio: 16 / 5;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	text-transform: uppercase;
+
+	/* NEED TO REPLACE THIS AND BAKE IT IN */
+	filter: grayscale(700%) sepia(100%) hue-rotate(90deg);
 }
 
-.layer {
+.hero-text-container{
+	position: relative;
+	z-index: 1;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	background-color: white;
+	padding: 0.3rem 0.55rem;
+
+	mix-blend-mode: difference;
+
+	border-right: 5px solid rgb(127, 127, 127);
+	border-bottom: 5px solid rgb(44, 44, 44);
+}
+
+.hero-text-container::after{
+	content: "";
+	position: absolute;
+	z-index: 3;
+	top: -0.6rem;
+	right: 0.25rem;
+	width: 26.5rem;
+	height: 103%;
+	background-color: rgb(255, 255, 255);
+	mix-blend-mode: difference;
+}
+
+.hero-text{
+	position: relative;
+	z-index: 2;
+	color: black;
+	text-align: left;
+	letter-spacing: 0.05em;
+}
+
+.hero-text-title {
+	font-size: 3rem;
+	font-weight: 900;
+	padding-left: 5rem;
+}
+
+
+.hero-text-subtitle {
+	font-size: 1.5rem;
+	font-weight: 600;
+	width: 100%;
+	text-align: right;
+}
+
+.hero-text-inverse{
+	background-color: black;
+	color: white;
+	padding: 0.1rem 0.3rem;
+}
+
+.glitched-asset{
 	position: absolute;
 	inset: 0;
+	z-index: 0;
+
 	width: 100%;
-}
-
-.layer-back {
-	filter: contrast(120%);
-	background: #00ff62;
-}
-
-.layer-front {
-	background: #000000;
-
-	/* SVG mask */
-	-webkit-mask-image: url(#revealMask);
-	mask-image: url(#revealMask);
-
-	-webkit-mask-repeat: no-repeat;
-	mask-repeat: no-repeat;
-
-	/* These help in some engines */
-	-webkit-mask-size: 100% 100%;
-	mask-size: 100% 100%;
-}
-
-.defs {
-	position: absolute;
-	width: 0;
-	height: 0;
-	overflow: hidden;
+	height: 100%;
+	object-fit: cover;
+	object-position: center center;
 }
