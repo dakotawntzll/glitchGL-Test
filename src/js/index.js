@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				interferenceIntensity: 1,
 				frameGhostAmount: 0.68,
 				stutterFreq: 0.4,
-				datamoshStrength: 0.75,
+				datamoshStrength: 0.9,
 			},
 		},
 		on: {

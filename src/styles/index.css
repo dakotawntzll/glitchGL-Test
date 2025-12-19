@@ -27,13 +27,14 @@ html {
 
 body {
 	min-height: 100dvh;
-	background: #0b0b0f;
+	background: #020502;
 	font-family: "Cousine", "Google Sans Code", monospace;
 }
 
 main {
 	min-height: 100dvh;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
@@ -47,17 +48,22 @@ main {
 .hero {
 	position: relative;
 	width: 100%;
-	aspect-ratio: 16 / 7;
+
+	max-height: 100vh;
+	/* overflow: hidden; */
+	
+	aspect-ratio: 16 / 9;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: flex-start;
 	text-transform: uppercase;
 
-	padding: 0 0.5rem 0 5rem;
+	padding: 0 0.5rem;
+	padding-left: 5rem;
 
 	/* NEED TO REPLACE THIS AND BAKE IT IN */
-	filter: sepia(80%) hue-rotate(90deg) contrast(110%);
+	filter: sepia(60%) hue-rotate(90deg) contrast(110%);
 }
 
 .hero-text-container{
@@ -87,6 +93,8 @@ main {
 
 	border-right: 5px solid rgb(127, 127, 127);
 	border-bottom: 5px solid rgb(74, 74, 74);
+	box-shadow: -5px 5px #2a2a2a;
+
 }
 
 .hero-text-container::after{
@@ -95,7 +103,7 @@ main {
 	z-index: 3;
 	top: -0.5rem;
 	right: 0.35rem;
-	width: 58.5%;
+	width: 81.5%;
 	height: 100%;
 	background-color: rgb(255, 255, 255);
 	mix-blend-mode: difference;
@@ -108,7 +116,7 @@ main {
 	color: black;
 	text-align: left;
 	letter-spacing: 0.05em;
-	text-shadow: 1px 1px 10px rgb(12, 35, 22);
+	text-shadow: -1px 1px 5px rgb(12, 35, 22);
 	min-width: fit-content;
 	line-height: 1.2;
 }
@@ -142,10 +150,6 @@ main {
 	
 	object-fit: cover;
 	object-position: center center;
-
-	transform: rotateY(180deg);
-    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
-    -moz-transform:rotateY(180deg); /* Firefox */
 }
 
 .glitched-asset-container{
@@ -165,7 +169,7 @@ main {
 	.hero-text-container::after{
 		top: -0.25rem;
 		right: 0.25rem;
-		width: 59%;
+		width: 81.5%;
 		height: 100%;
 	}
 
