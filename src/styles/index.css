@@ -238,6 +238,22 @@ main {
 }
 
 /* =================
+	Animations
+================= */
+
+.fade-in {
+	opacity: 0;
+	transform: translateY(30px);
+	transition: opacity 3s ease, transform 5s ease;
+}
+
+.fade-in.is-visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+
+/* =================
 	Media Queries
 ================= */
 

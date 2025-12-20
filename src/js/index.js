@@ -168,6 +168,27 @@ document.addEventListener("DOMContentLoaded", () => {
 			if (!isAnim) start();
 		};
 
+		// Adjustments to start wave
+		const triggerWave = (opts = {}) => {
+			const { at = 0.5, repeat = 1, interval = 80 } = opts;
+
+			// set cursorPos based on percentage
+			const len = origTxt.length;
+			cursorPos = Math.max(
+				0,
+				Math.min(Math.round(at * (len - 1)), len - 1)
+			);
+
+			// start one wave now
+			startWave();
+
+			// optionally start a few more waves to make it “feel alive”
+			for (let i = 1; i < repeat; i++) {
+				setTimeout(() => startWave(), i * interval);
+			}
+		};
+
+
 		/**
 		 * Clean up expired waves that have exceeded their duration
 		 */
@@ -243,11 +264,11 @@ document.addEventListener("DOMContentLoaded", () => {
 		const start = () => {
 			if (isAnim) return;
 
-			// Preserve original width to prevent layout shifts
-			if (origW === null) {
-				origW = el.getBoundingClientRect().width;
-				el.style.width = `${origW}px`;
-			}
+			// // Preserve original width to prevent layout shifts
+			// if (origW === null) {
+			// 	origW = el.getBoundingClientRect().width;
+			// 	el.style.width = `${origW}px`;
+			// }
 
 			isAnim = true;
 			el.classList.add("as");
@@ -315,11 +336,11 @@ document.addEventListener("DOMContentLoaded", () => {
 				animId = null;
 			}
 
-			// Reset width preservation
-			if (origW !== null) {
-				el.style.width = "";
-				origW = null;
-			}
+			// // Reset width preservation
+			// if (origW !== null) {
+			// 	el.style.width = "";
+			// 	origW = null;
+			// }
 			stop();
 		};
 
@@ -349,21 +370,51 @@ document.addEventListener("DOMContentLoaded", () => {
 		init();
 
 		// public API
-		return { updateTxt, resetToOrig, destroy };
+		return { updateTxt, resetToOrig, destroy, triggerWave };
 	};
 
+	const asciiInstances = new Map();
+
 	const initASCIIShift = () => {
-		// Apply to the H1 and the highlighted span only (so we don't destroy the subtitle's inner span markup)
 		const targets = document.querySelectorAll(
 			".hero-text-title, .hero-text-inverse"
 		);
 
 		targets.forEach((el) => {
 			if (!el.textContent.trim()) return;
-			createASCIIShift(el, { dur: 1000, spread: 1 });
+
+			const inst = createASCIIShift(el, { dur: 1000, spread: 1 });
+			asciiInstances.set(el, inst);
 		});
 	};
-	initASCIIShift(); // end ASCII shift init
 
+	initASCIIShift(); // End of ASCII shift initialization
+
+
+
+	// Fading in animations
+
+	const fadeEls = document.querySelectorAll(".fade-in");
+	const fadeObserver = new IntersectionObserver((entries) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				const el = entry.target;
+				el.classList.add("is-visible");
+				fadeObserver.unobserve(el);
+
+				// ASCII hook 
+				const asciiTargets = el.querySelectorAll(".ascii-on-fade");
+				asciiTargets.forEach((t) => {
+					asciiInstances.get(t)?.triggerWave({
+						at: 0.5,
+						repeat: 5,
+						interval: 100,
+					});
+				});
+			}
+		});
+	});
+
+	fadeEls.forEach((el) => fadeObserver.observe(el));
 
 });
