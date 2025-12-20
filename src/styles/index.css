@@ -215,7 +215,26 @@ main {
 }
 
 .glitched-asset-container{
-	opacity: 0.75;
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
+	/* opacity: 0.75; */
+
+	opacity: 0;
+	transition: opacity 1000ms ease-in; 
+}
+
+.glitched-asset-container.is-ready{
+  	opacity: 0.75;  
+}
+
+.glitched-asset-container canvas {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	display: block;
 }
 
 /* =================

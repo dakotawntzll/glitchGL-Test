@@ -1,76 +1,119 @@
 document.addEventListener("DOMContentLoaded", () => {
-	const glitchEffect = glitchGL({
-		target: ".glitchGL", 
-		intensity: 4.0,
-		interaction: {
-			enabled: true,
-			shape: "square",
-			customSize: "100vw",
+
+	const loadScript = (src) =>
+		new Promise((resolve, reject) => {
+			const s = document.createElement("script");
+			s.src = src;
+			s.async = true;
+			s.onload = () => resolve();
+			s.onerror = () => reject(new Error(`Failed to load: ${src}`));
+			document.head.appendChild(s);
+	});
+
+	const runWhenIdle = (fn) => {
+		if ("requestIdleCallback" in window) {
+			requestIdleCallback(fn, { timeout: 2000 });
+		} else {
+			// Safari fallback
+			setTimeout(fn, 1);
+		}
+	};
+
+	const initGlitch = () => {
+		glitchGL({
+			target: ".glitchGL",
+			intensity: 4.0,
+			interaction: {
+				enabled: true,
+				shape: "square",
+				customSize: "100vw",
+				effects: {
+					pixelation: [],
+					crt: ["phosphorGlow", "curvature"],
+					glitch: [
+						"lineDisplacement",
+						"signalDropout",
+						"syncErrors",
+						"frameGhosting",
+						"stutterFreeze",
+						"datamoshing",
+					],
+				},
+			},
 			effects: {
-				pixelation: [],
-				crt: [
-					"phosphorGlow",
-					"curvature",
-				],
-				glitch: [
-					"lineDisplacement",
-					"signalDropout",
-					"syncErrors",
-					"frameGhosting",
-					"stutterFreeze",
-					"datamoshing",
-				],
+				pixelation: {
+					enabled: true,
+					pixelSize: 10,
+					pixelShape: "square",
+					bitDepth: "none",
+					dithering: "bayer",
+					pixelDirection: "square",
+				},
+				crt: {
+					enabled: true,
+					preset: "computer-monitor",
+					curvature: 3,
+					lineDirection: "down",
+					lineMovement: true,
+					lineSpeed: 0.001,
+					brightness: 0.25,
+					phosphorGlow: 1,
+					scanlineIntensity: 0.45,
+					scanlineThickness: 1,
+					scanlineCount: 200,
+					chromaticAberration: 0.7,
+				},
+				glitch: {
+					enabled: true,
+					rgbShift: 0,
+					digitalNoise: 0.5,
+					lineDisplacement: 0,
+					bitCrushDepth: 4,
+					signalDropoutFreq: 0.03,
+					signalDropoutSize: 0.4,
+					syncErrorFreq: 0.085,
+					syncErrorAmount: 0.141,
+					interferenceSpeed: 4.6,
+					interferenceIntensity: 1,
+					frameGhostAmount: 0.68,
+					stutterFreq: 0.4,
+					datamoshStrength: 1,
+				},
 			},
-		},
-		effects: {
-			pixelation: {
-				enabled: true,
-				pixelSize: 10,
-				pixelShape: "square",
-				bitDepth: "none",
-				dithering: "bayer",
-				pixelDirection: "square",
-			},
-			crt: {
-				enabled: true,
-				preset: "computer-monitor",
-				curvature: 3,
-				lineDirection: "down",
-				lineMovement: true,
-				lineSpeed: 0.001,
-				brightness: 0.25,
-				phosphorGlow: 1,
-				scanlineIntensity: 0.45,
-				scanlineThickness: 1,
-        		scanlineCount: 200,
-				chromaticAberration: 0.7,
-			},
-			glitch: {
-				enabled: true,
-				rgbShift: 0,
-				digitalNoise: 0.5,
-				lineDisplacement: 0,
-				bitCrushDepth: 4,
-				signalDropoutFreq: 0.03,
-				signalDropoutSize: 0.4,
-				syncErrorFreq: 0.085,
-				syncErrorAmount: 0.141,
-				interferenceSpeed: 4.6,
-				interferenceIntensity: 1,
-				frameGhostAmount: 0.68,
-				stutterFreq: 0.4,
-				datamoshStrength: 1,
-			},
-		},
-		on: {
-			init: function (instance) {
-				console.log(
-					"glitchGL digital glitch demo initialized!",
-					instance
-				);
-			},
-		},
-	}); // end glitchGL initialization
+		});
+	};
+
+
+	const lazyLoadGlitchLibsAndInit = async () => {
+
+		await new Promise((r) => requestAnimationFrame(r));
+
+		await loadScript(
+			"https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+		);
+		await loadScript("./src/js/glitchGL.min.js");
+
+		const video = document.querySelector(".glitched-asset");
+		if (video && video.readyState < 2) {
+			await new Promise((r) =>
+				video.addEventListener("canplay", r, { once: true })
+			);
+		}
+
+		initGlitch();
+		requestAnimationFrame(() => {
+			document
+				.querySelector(".glitched-asset-container")
+				?.classList.add("is-ready");
+		});
+	};
+
+	runWhenIdle(() => {
+		lazyLoadGlitchLibsAndInit().catch((err) => console.error(err));
+	});
+
+
+	
 
 	// Constants for wave animation behavior
 	const WAVE_THRESH = 2;
