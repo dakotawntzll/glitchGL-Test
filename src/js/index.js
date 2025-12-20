@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		// options
 		const cfg = {
 			dur: 900,
-			chars: '.,·-+:=*""┐┌┴┬╗╝╬╣╩╦║░▒█▄▀▌▐■!?&#23456789',
+			chars: '.,·-+:=*""|||[]/!?&#23456789',
 			preserveSpaces: true,
 			spread: 0.5,
 			...opts,

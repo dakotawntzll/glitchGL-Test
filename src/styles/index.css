@@ -27,7 +27,7 @@ html {
 body {
 	min-height: 100dvh;
 
-	font-family: "Cousine", "Google Sans Code", monospace;
+	font-family: "Cousine", monospace;
 	line-height: 1.6;
 	font-size: 1.125rem;
 	
@@ -52,7 +52,6 @@ body {
 	position: relative;
 	z-index: 2;
 	color: black;
-	text-align: left;
 	letter-spacing: 0.05em;
 	text-shadow: -1px 1px 5px rgb(12, 35, 22);
 	/* min-width: fit-content; */
@@ -123,9 +122,10 @@ main {
 	flex-direction: column;
 	justify-content: center;
 	gap: 0.2rem;
+	text-align: left;
+	padding: 0.3rem 0.75rem;
 
 	background: white;
-
 	background:
 		linear-gradient(
 			10deg,
@@ -134,7 +134,6 @@ main {
 			rgb(255, 255, 255)
 		),
 		url("../assets/noise.svg");
-	
 	background:
 		conic-gradient(
 			from -90deg at left top,
@@ -146,15 +145,11 @@ main {
 		),
 		url("../assets/noise.svg");
 
-	
-	padding: 0.3rem 0.75rem;
-	
 	mix-blend-mode: difference;
 
 	border-right: 5px solid rgb(127, 127, 127);
 	border-bottom: 5px solid rgb(74, 74, 74);
 	box-shadow: -5px 5px #2a2a2a;
-
 }
 
 .hero-text-container::after{
