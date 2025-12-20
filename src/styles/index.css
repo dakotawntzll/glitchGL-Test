@@ -10,7 +10,6 @@
 	font: inherit;
 }
 
-
 img,
 picture,
 svg,
@@ -22,32 +21,61 @@ video {
 html {
 	color-scheme: dark light;
 	scrollbar-width: thin;
-	scrollbar-color: rgb(59, 59, 59) #181818;
+	scrollbar-color: #11351b #020502;
 }
 
 body {
 	min-height: 100dvh;
-	background: #020502;
-	font-family: "Cousine", "Google Sans Code", monospace;
 
-	background:
-	/* linear-gradient(
-		10deg,
-		rgba(0, 7, 2, 0.6),
-		rgb(4, 14, 9, 0.9),
-		rgba(8, 26, 4, 0.9)
-	), */
-	conic-gradient(
-		from -90deg at left,
-		rgba(0, 27, 8, 0.6),
-		rgba(5, 32, 8, 0.9),
-		rgba(0, 0, 0, 0.8),
-		rgba(1, 3, 1, 0.9),
-		rgba(0, 27, 8, 0.6)
-	),
-	url("../assets/noise.svg");
+	font-family: "Cousine", "Google Sans Code", monospace;
+	line-height: 1.6;
+	font-size: 1.125rem;
 	
+	background: #020502;
+	background:
+		conic-gradient(
+			from -90deg at left,
+			rgba(0, 27, 8, 0.6),
+			rgba(5, 32, 8, 0.9),
+			rgba(0, 0, 0, 0.8),
+			rgba(1, 3, 1, 0.9),
+			rgba(0, 27, 8, 0.6)
+		),
+		url("../assets/noise.svg");
 }
+
+/* =================
+	Typography
+================= */
+
+.hero-text{
+	position: relative;
+	z-index: 2;
+	color: black;
+	text-align: left;
+	letter-spacing: 0.05em;
+	text-shadow: -1px 1px 5px rgb(12, 35, 22);
+	/* min-width: fit-content; */
+	line-height: 1.2;
+}
+
+.hero-text-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+}
+
+
+.hero-text-subtitle {
+	font-size: 1.25rem;
+	font-weight: 400;
+	width: 100%;
+	text-align: right;
+}
+
+
+/* =================
+	Layout
+================= */
 
 main {
 	min-height: 100dvh;
@@ -58,9 +86,12 @@ main {
 }
 
 .container {
-	width: 90%;
+	width: 80%;
 	max-width: 1200px;
 	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
 .hero {
@@ -69,7 +100,7 @@ main {
 
 	max-height: 100vh;
 	/* overflow: hidden; */
-	
+
 	aspect-ratio: 16 / 9;
 	display: flex;
 	flex-direction: column;
@@ -77,8 +108,8 @@ main {
 	align-items: flex-start;
 	text-transform: uppercase;
 
-	padding: 0 0.5rem;
-	padding-left: 5rem;
+	/* padding: 0 0.5rem; */
+	/* padding-left: 5rem; */
 
 	/* NEED TO REPLACE THIS AND BAKE IT IN */
 	filter: sepia(75%) hue-rotate(75deg) contrast(110%) saturate(130%);
@@ -103,10 +134,20 @@ main {
 			rgb(255, 255, 255)
 		),
 		url("../assets/noise.svg");
+	
+	background:
+		conic-gradient(
+			from -90deg at left top,
+			rgb(255, 255, 255, 0),
+			rgb(83, 83, 83, 0.2),
+			rgb(220, 220, 220),
+			rgb(83, 83, 83, 0.2),
+			rgb(83, 83, 83, 0.2)
+		),
+		url("../assets/noise.svg");
 
 	
 	padding: 0.3rem 0.75rem;
-	/* padding-left: 5rem; */
 	
 	mix-blend-mode: difference;
 
@@ -127,30 +168,6 @@ main {
 	background-color: rgb(255, 255, 255);
 	mix-blend-mode: difference;
 	pointer-events: none;
-}
-
-.hero-text{
-	position: relative;
-	z-index: 2;
-	color: black;
-	text-align: left;
-	letter-spacing: 0.05em;
-	text-shadow: -1px 1px 5px rgb(12, 35, 22);
-	min-width: fit-content;
-	line-height: 1.2;
-}
-
-.hero-text-title {
-	font-size: 3rem;
-	font-weight: 700;
-}
-
-
-.hero-text-subtitle {
-	font-size: 1.5rem;
-	font-weight: 400;
-	width: 100%;
-	text-align: right;
 }
 
 .hero-text-inverse{
@@ -175,12 +192,19 @@ main {
 	opacity: 0.75;
 }
 
+/* =================
+	Media Queries
+================= */
 
-@media (max-width: 60rem) {
+
+@media (max-width: 50rem) {
+
+	.container {
+		width: 90%;
+	}
 
 	.hero-text-container{
 		padding: 0.1rem 0.3rem;
-
 		border-right: 3px solid rgb(127, 127, 127);
 		border-bottom: 3px solid rgb(74, 74, 74);
 	}
@@ -194,7 +218,6 @@ main {
 
 	.hero {
 		aspect-ratio: 5 / 3;
-		padding-left: 0.5rem;
 	}
 
 	.hero-text-title {

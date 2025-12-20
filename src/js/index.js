@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		interaction: {
 			enabled: true,
 			shape: "square",
-			customSize: "80vw",
+			customSize: "100vw",
 			effects: {
 				pixelation: [],
 				crt: [
