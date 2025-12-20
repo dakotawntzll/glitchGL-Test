@@ -1,3 +1,65 @@
+/* =================
+	Colors & Variables
+================= */
+:root {
+	--primary: #0f421e;
+	--primary-heavy: #0F2210;
+	--background-color: #0f100f;
+	--scrollbar-colors: var(--primary) var(--background-color);
+	--hero-filter: sepia(75%) hue-rotate(75deg) contrast(110%) saturate(130%);
+	--hero-text-bg: white;
+
+	--background-gradient: 
+		conic-gradient(
+			from -90deg at left,
+			rgba(0, 27, 8, 0.6),
+			rgba(5, 32, 8, 0.9),
+			rgba(0, 0, 0, 0.8),
+			rgba(1, 3, 1, 0.9),
+			rgba(0, 27, 8, 0.6)
+			),
+		url("../assets/noise.svg");
+	
+
+	--hero-text-gradient:
+		conic-gradient(
+				from -90deg at left top,
+				oklch(100% 0.00011 271.152 / 0),
+				oklab(44.226% 0 -0.00005 / 0.2),
+				oklch(89.449% 0.0001 271.152),
+				oklab(44.226% 0 -0.00005 / 0.2),
+				oklch(44.226% 0.00005 271.152 / 0.2)
+			),
+		url("../assets/noise.svg");
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--primary: #0f421e;
+		--primary-heavy: #92d896;
+		--background-color: #e0e8dc;
+		--scrollbar-colors: var(--primary) var(--background-color);
+		--hero-filter: sepia(75%) hue-rotate(75deg) brightness(130%) contrast(110%) saturate(130%) invert(100%) hue-rotate(180deg);
+		--hero-text-bg: black;
+		--background-gradient:
+			conic-gradient(
+				from -90deg at left,
+				oklch(78.758% 0.09549 153.265 / 0.6),
+				oklch(41.539% 0.11377 144.757 / 0.8),
+				oklch(100% 0.00011 271.152 / 0.45),
+				oklch(79.318% 0.03535 145.351 / 0.5),
+				oklch(78.758% 0.09549 153.265 / 0.6)
+			),
+			url("../assets/noise.svg");
+	}
+}
+
+
+
+/* =================
+	General Selectors
+================= */
+
 *,
 *::before,
 *::after {
@@ -21,27 +83,18 @@ video {
 html {
 	color-scheme: dark light;
 	scrollbar-width: thin;
-	scrollbar-color: #11351b #020502;
+	scrollbar-color: var(--scrollbar-colors);
 }
 
 body {
 	min-height: 100dvh;
-
+	
 	font-family: "Cousine", monospace;
 	line-height: 1.6;
 	font-size: 1.125rem;
 	
-	background: #020502;
-	background:
-		conic-gradient(
-			from -90deg at left,
-			rgba(0, 27, 8, 0.6),
-			rgba(5, 32, 8, 0.9),
-			rgba(0, 0, 0, 0.8),
-			rgba(1, 3, 1, 0.9),
-			rgba(0, 27, 8, 0.6)
-		),
-		url("../assets/noise.svg");
+	background: var(--background-color);
+	background: var(--background-gradient);
 }
 
 /* =================
@@ -53,8 +106,7 @@ body {
 	z-index: 2;
 	color: black;
 	letter-spacing: 0.05em;
-	text-shadow: -1px 1px 5px rgb(12, 35, 22);
-	/* min-width: fit-content; */
+	text-shadow: -1px 1px 5px var(--primary-heavy);
 	line-height: 1.2;
 }
 
@@ -80,7 +132,7 @@ main {
 	min-height: 100dvh;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 }
 
@@ -98,7 +150,6 @@ main {
 	width: 100%;
 
 	max-height: 100vh;
-	/* overflow: hidden; */
 
 	aspect-ratio: 16 / 9;
 	display: flex;
@@ -107,11 +158,8 @@ main {
 	align-items: flex-start;
 	text-transform: uppercase;
 
-	/* padding: 0 0.5rem; */
-	/* padding-left: 5rem; */
-
-	/* NEED TO REPLACE THIS AND BAKE IT IN */
-	filter: sepia(75%) hue-rotate(75deg) contrast(110%) saturate(130%);
+	/* Have to keep this filter here to get the look I want as without it, the exclusion blending mode breaks the color*/
+	filter: var(--hero-filter);
 }
 
 .hero-text-container{
@@ -125,26 +173,9 @@ main {
 	text-align: left;
 	padding: 0.3rem 0.75rem;
 
-	background: white;
-	background:
-		linear-gradient(
-			10deg,
-			rgb(83, 83, 83, 0.2),
-			rgb(220, 220, 220),
-			rgb(255, 255, 255)
-		),
-		url("../assets/noise.svg");
-	background:
-		conic-gradient(
-			from -90deg at left top,
-			rgb(255, 255, 255, 0),
-			rgb(83, 83, 83, 0.2),
-			rgb(220, 220, 220),
-			rgb(83, 83, 83, 0.2),
-			rgb(83, 83, 83, 0.2)
-		),
-		url("../assets/noise.svg");
-
+	background: var(--hero-text-bg);
+	background: var(--hero-text-gradient);
+	
 	mix-blend-mode: difference;
 
 	border-right: 5px solid rgb(127, 127, 127);
