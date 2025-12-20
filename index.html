@@ -4,12 +4,30 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Hero Effect</title>
+		<link rel="icon" href="./src/assets/favicon/favicon.ico">
+		<link rel="icon" type="image/png" sizes="32x32" href="./src/assets/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="./src/assets/favicon/favicon-16x16.png">
+		<link rel="apple-touch-icon" href="./src/assets/favicon/apple-touch-icon.png">
 
+
+		<meta 
+			name="description"
+  			content="Hero effect using three.js and the glitchGL effect for my personal portfolio website"
+		>
+		<meta name="author" content="Dakota">
+		<meta property="og:title" content="Dakota — Front-End Developer">
+		<meta property="og:description" content="Interactive front-end experiments, glitch aesthetics, and creative UI development.">
+		<meta property="og:type" content="website">
+		<meta property="og:site_name" content="Dakota — Front-End Developer">
+		<meta property="og:locale" content="en_US">
+
+		
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&display=swap" rel="stylesheet">
-
+		<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 		<link rel="stylesheet" href="./src/styles/index.css">
+
 	</head>
 
     <body>
@@ -36,6 +54,8 @@
 						loop 
 						muted 
 						playsinline
+						preload="metadata"
+  						poster="src/assets/hero-bg-vid-poster.jpg"
 					>
 						<source src="src/assets/hero-bg-vid.mp4" type="video/mp4">
 					</video>
@@ -45,11 +65,11 @@
 		</main>
 		
 		<!-- Three.js – WebGL 3D library (required) -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+		<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 		
 		<!-- glitchGL.min.js – the library itself -->
-		<script src="./src/js/glitchGL.min.js"></script>
+		<script defer src="./src/js/glitchGL.min.js"></script>
 
-        <script src="./src/js/index.js"></script>
+        <script defer src="./src/js/index.js"></script>
     </body>
 </html>
