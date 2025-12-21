@@ -11,12 +11,12 @@
 
 	--background-gradient: 
 		conic-gradient(
-			from -90deg at left,
-			rgba(0, 27, 8, 0.6),
-			rgba(5, 32, 8, 0.9),
-			rgba(0, 0, 0, 0.8),
-			rgba(1, 3, 1, 0.9),
-			rgba(0, 27, 8, 0.6)
+			from -90deg at left bottom,
+			oklch(19.443% 0.05179 151.459 / 0.6),
+			oklch(21.553% 0.05581 145.667 / 0.8),
+			oklch(0% 0 0 / 0.85),
+			oklch(8.874% 0.01568 144.143 / 0.9),
+			oklch(19.443% 0.05179 151.459 / 0.6)
 			),
 		url("../assets/noise.svg");
 	
@@ -25,9 +25,9 @@
 		conic-gradient(
 				from -90deg at left top,
 				oklch(100% 0.00011 271.152 / 0),
-				oklab(44.226% 0 -0.00005 / 0.2),
+				oklch(44.226% 0.00005 271.152 / 0.2),
 				oklch(89.449% 0.0001 271.152),
-				oklab(44.226% 0 -0.00005 / 0.2),
+				oklch(44.226% 0.00005 271.152 / 0.2),
 				oklch(44.226% 0.00005 271.152 / 0.2)
 			),
 		url("../assets/noise.svg");
@@ -87,7 +87,7 @@ html {
 }
 
 body {
-	min-height: 100dvh;
+	min-height: 300dvh;
 	
 	font-family: "Cousine", monospace;
 	line-height: 1.6;
@@ -225,8 +225,9 @@ main {
 	box-shadow: 
 		0px 1px 5px #0f100f,
 		0px 2px 10px #0f100f,
-		0px 7px 20px #0F2210,
-		0px 15px 55px var(--primary);
+		0px 5px 10px #0f100f,
+		0px 7px 20px oklch(22.97% 0.0423 145.196 / 0.9),
+		0px 15px 55px oklch(35.545% 0.08218 117.335 / 0.8);
 	transition: opacity 1000ms ease-in, box-shadow 2000ms ease;
 }
 

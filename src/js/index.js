@@ -3,13 +3,18 @@ document.addEventListener("DOMContentLoaded", () => {
 	// ---------------------- Glitch effect initialization ----------------------
 
 	const initGlitch = () => {
+
+		const sizeCursor = (window.innerWidth > window.innerHeight)
+			? "100vw"
+			: "100vh";
+
 		glitchGL({
 			target: ".glitchGL",
 			intensity: 4.0,
 			interaction: {
 				enabled: true,
 				shape: "square",
-				customSize: "100vw",
+				customSize: sizeCursor,
 				effects: {
 					pixelation: [],
 					crt: ["phosphorGlow", "curvature"],
