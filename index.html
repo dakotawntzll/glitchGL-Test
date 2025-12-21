@@ -21,20 +21,7 @@
 		<meta property="og:site_name" content="Dakota — Front-End Developer">
 		<meta property="og:locale" content="en_US">
 
-		<!-- Inlining just for hero effect -->
-		<style>
-			html,
-			body {
-				margin: 0;
-				min-height: 100%;
-			}
-			
-			body {
-				font-family: "Cousine", monospace;
-				background: #0f100f;
-			}
-		</style>
-
+		<link rel="preload" as="image" href="./src/assets/noise.svg" type="image/svg+xml">
 
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,6 +47,15 @@
 						>I'm a <span class="hero-text-inverse ascii-on-fade">front-end developer</span></p>
 					</div>
 				</div>
+				
+				<div class="glitch-placeholder-container" aria-hidden="true">
+					<img
+						class="glitch-placeholder"
+						src="./src/assets/hero-bg-vid-poster.jpg"
+						alt=""
+						aria-hidden="true"
+					/>
+				</div>
 
 				<div class="glitched-asset-container" aria-hidden="true">
 					<video class="glitched-asset glitchGL" 
@@ -67,10 +63,9 @@
 						loop 
 						muted 
 						playsinline
-						preload="metadata"
-  						poster="src/assets/hero-bg-vid-poster.jpg"
+  						poster="./src/assets/hero-bg-vid-poster.jpg"
 					>
-						<source src="src/assets/hero-bg-vid-small.mp4" type="video/mp4">
+						<source src="./src/assets/hero-bg-vid-small.mp4" type="video/mp4">
 					</video>
 				</div>
 

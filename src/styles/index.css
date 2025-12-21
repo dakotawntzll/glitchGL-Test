@@ -181,6 +181,7 @@ main {
 	border-right: 5px solid rgb(127, 127, 127);
 	border-bottom: 5px solid rgb(74, 74, 74);
 	box-shadow: -5px 5px #2a2a2a;
+
 }
 
 .hero-text-container::after{
@@ -194,6 +195,11 @@ main {
 	background-color: rgb(255, 255, 255);
 	mix-blend-mode: difference;
 	pointer-events: none;
+
+	transform-origin: left;
+  	transform: scaleX(0);
+  	transition: transform 2s ease;
+	transition-delay: 1s;
 }
 
 .hero-text-inverse{
@@ -202,39 +208,44 @@ main {
 	padding: 0.1rem 0.3rem;
 }
 
-.glitched-asset{
-	position: absolute;
-	inset: 0;
-	z-index: 0;
-
-	width: 100%;
-	height: 100%;
-	
-	object-fit: cover;
-	object-position: center center;
-}
-
-.glitched-asset-container{
+.glitched-asset-container,
+.glitched-asset,
+.glitched-asset-container canvas,
+.glitch-placeholder-container,
+.glitch-placeholder{
 	position: absolute;
 	inset: 0;
 	z-index: 0;
 	pointer-events: none;
-	/* opacity: 0.75; */
+}
 
-	opacity: 0;
-	transition: opacity 1000ms ease-in; 
+.glitched-asset-container{
+	opacity: 0; 
+	box-shadow: 
+		0px 1px 5px #0f100f,
+		0px 2px 10px #0f100f,
+		0px 7px 20px #0F2210,
+		0px 15px 55px var(--primary);
+	transition: opacity 1000ms ease-in, box-shadow 2000ms ease;
+}
+
+.glitched-asset,
+.glitched-asset-container canvas,
+.glitch-placeholder{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center center;
 }
 
 .glitched-asset-container.is-ready{
-  	opacity: 0.75;  
+  	opacity: 1;  
 }
 
-.glitched-asset-container canvas {
-	position: absolute;
-	inset: 0;
-	width: 100%;
-	height: 100%;
-	display: block;
+.glitch-placeholder{
+	opacity: 0; 
+  	animation: fade 2s forwards;
+	animation-delay: 750ms;
 }
 
 /* =================
@@ -252,7 +263,21 @@ main {
 	transform: translateY(0);
 }
 
+.hero-text-inverse.is-visible,
+.hero-text-container.fade-in.is-visible::after{
+  transform: scaleX(1);
+}
 
+
+@keyframes fade {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
 /* =================
 	Media Queries
 ================= */

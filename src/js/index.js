@@ -1,23 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-	const loadScript = (src) =>
-		new Promise((resolve, reject) => {
-			const s = document.createElement("script");
-			s.src = src;
-			s.async = true;
-			s.onload = () => resolve();
-			s.onerror = () => reject(new Error(`Failed to load: ${src}`));
-			document.head.appendChild(s);
-	});
-
-	const runWhenIdle = (fn) => {
-		if ("requestIdleCallback" in window) {
-			requestIdleCallback(fn, { timeout: 2000 });
-		} else {
-			// Safari fallback
-			setTimeout(fn, 1);
-		}
-	};
+	// ---------------------- Glitch effect initialization ----------------------
 
 	const initGlitch = () => {
 		glitchGL({
@@ -83,37 +66,83 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	};
 
+	// ---------------------- Lazy load section  ----------------------
 
-	const lazyLoadGlitchLibsAndInit = async () => {
+	const SELECTORS = {
+		video: ".glitched-asset",
+		container: ".glitched-asset-container",
+	};
 
-		await new Promise((r) => requestAnimationFrame(r));
+	const GLITCH_LIBS = {
+		// three: "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js",
+		three: "./src/js/glitchGLFiles/three.min.js",
+		glitch: "./src/js/glitchGLFiles/glitchGL.min.js",
+	};
 
-		await loadScript(
-			"https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
-		);
-		await loadScript("./src/js/glitchGL.min.js");
-
-		const video = document.querySelector(".glitched-asset");
-		if (video && video.readyState < 2) {
-			await new Promise((r) =>
-				video.addEventListener("canplay", r, { once: true })
-			);
+	const onIdle = (fn, timeout = 2000) => {
+		if ("requestIdleCallback" in window) {
+			requestIdleCallback(fn, { timeout });
+		} else {
+			setTimeout(fn, 1);
 		}
+	};
 
-		initGlitch();
+	const loadedScripts = new Map();
+
+	const loadScript = (src) => {
+		if (loadedScripts.has(src)) return loadedScripts.get(src);
+
+		const p = new Promise((resolve, reject) => {
+			const s = document.createElement("script");
+			s.src = src;
+			s.async = true;
+			s.onload = resolve;
+			s.onerror = () => reject(new Error(`Failed to load: ${src}`));
+			document.head.appendChild(s);
+		});
+
+		loadedScripts.set(src, p);
+		return p;
+	};
+
+	const whenVideoCanPlay = (video) => {
+		if (!video || video.readyState >= 2) return Promise.resolve();
+		return new Promise((resolve) =>
+			video.addEventListener("canplay", resolve, { once: true })
+		);
+	};
+
+	const setGlitchReady = () => {
+		const container = document.querySelector(SELECTORS.container);
+		if (!container) return;
+
 		requestAnimationFrame(() => {
-			document
-				.querySelector(".glitched-asset-container")
-				?.classList.add("is-ready");
+			requestAnimationFrame(() => {
+				container.classList.add("is-ready");
+			});
 		});
 	};
 
-	runWhenIdle(() => {
-		lazyLoadGlitchLibsAndInit().catch((err) => console.error(err));
-	});
+	const bootGlitch = async () => {
+		const video = document.querySelector(SELECTORS.video);
+
+		await Promise.all([
+			loadScript(GLITCH_LIBS.three),
+			loadScript(GLITCH_LIBS.glitch),
+		]);
+
+		await whenVideoCanPlay(video);
+
+		initGlitch();
+		setGlitchReady();
+	};
+
+	onIdle(() => bootGlitch().catch(console.error));
 
 
-	
+
+	// ---------------------- ASCII ripple animation ----------------------
+
 
 	// Constants for wave animation behavior
 	const WAVE_THRESH = 2;
@@ -187,7 +216,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				setTimeout(() => startWave(), i * interval);
 			}
 		};
-
 
 		/**
 		 * Clean up expired waves that have exceeded their duration
@@ -389,10 +417,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	};
 
 	initASCIIShift(); // End of ASCII shift initialization
+	
 
 
-
-	// Fading in animations
+	// ---------------------- Animation Fade Ins ----------------------
 
 	const fadeEls = document.querySelectorAll(".fade-in");
 	const fadeObserver = new IntersectionObserver((entries) => {
@@ -402,7 +430,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				el.classList.add("is-visible");
 				fadeObserver.unobserve(el);
 
-				// ASCII hook 
+				// ASCII hook
 				const asciiTargets = el.querySelectorAll(".ascii-on-fade");
 				asciiTargets.forEach((t) => {
 					asciiInstances.get(t)?.triggerWave({
@@ -416,5 +444,4 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 
 	fadeEls.forEach((el) => fadeObserver.observe(el));
-
 });
