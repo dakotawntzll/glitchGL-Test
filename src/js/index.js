@@ -83,8 +83,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	};
 
 	const GLITCH_LIBS = {
-		three: "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js",
-		// three: "./src/js/glitchGLFiles/three.min.js",
+		// three: "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js",
+		three: "./src/js/glitchGLFiles/three.min.js",
 		glitch: "./src/js/glitchGLFiles/glitchGL.min.js",
 	};
 
