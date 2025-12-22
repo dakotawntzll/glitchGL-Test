@@ -106,7 +106,7 @@ body {
 	z-index: 2;
 	color: black;
 	letter-spacing: 0.05em;
-	text-shadow: -1px 1px 5px var(--primary-heavy);
+	text-shadow: -1px 1px 5px rgb(255, 255, 255, 0.8);
 	line-height: 1.2;
 }
 
@@ -177,7 +177,7 @@ main {
 	background: var(--hero-text-bg);
 	background: var(--hero-text-gradient);
 	
-	mix-blend-mode: difference;
+	mix-blend-mode: exclusion;
 
 	border-right: 5px solid rgb(127, 127, 127);
 	border-bottom: 5px solid rgb(74, 74, 74);
@@ -194,7 +194,7 @@ main {
 	width: 81.5%;
 	height: 100%;
 	background-color: rgb(255, 255, 255);
-	mix-blend-mode: difference;
+	mix-blend-mode: exclusion;
 	pointer-events: none;
 
 	transform-origin: left;
@@ -221,6 +221,7 @@ main {
 }
 
 .glitched-asset-container{
+	filter: drop-shadow(16px 16px 20px blue);
 	opacity: 0; 
 	box-shadow: 
 		0px 1px 5px #0f100f,
