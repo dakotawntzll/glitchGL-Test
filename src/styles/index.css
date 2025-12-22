@@ -87,7 +87,7 @@ html {
 }
 
 body {
-	min-height: 300dvh;
+	min-height: 100dvh;
 	
 	font-family: "Cousine", monospace;
 	line-height: 1.6;
@@ -149,8 +149,8 @@ main {
 	position: relative;
 	width: 100%;
 
-	max-height: 100dvh;
-	height: 100dvh;
+	max-height: 100vh;
+	height: 100vh;
 	/* aspect-ratio: 16 / 9; */
 
 	display: flex;
@@ -247,7 +247,7 @@ main {
 .glitch-placeholder{
 	opacity: 0; 
   	animation: fade 2s forwards;
-	animation-delay: 750ms;
+	animation-delay: 1s;
 }
 
 /* =================
@@ -257,7 +257,7 @@ main {
 .fade-in {
 	opacity: 0;
 	transform: translateY(30px);
-	transition: opacity 3s ease, transform 5s ease;
+	transition: opacity 2s ease, transform 5s ease;
 }
 
 .fade-in.is-visible {
