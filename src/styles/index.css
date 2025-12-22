@@ -6,7 +6,7 @@
 	--primary-heavy: #0F2210;
 	--background-color: #0f100f;
 	--scrollbar-colors: var(--primary) var(--background-color);
-	--hero-filter: sepia(75%) hue-rotate(75deg) contrast(110%) saturate(130%);
+	--hero-filter: sepia(70%) hue-rotate(75deg) contrast(110%) saturate(130%);
 	--hero-text-bg: white;
 
 	--background-gradient: 

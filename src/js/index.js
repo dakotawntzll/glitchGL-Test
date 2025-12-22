@@ -17,7 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
 				customSize: sizeCursor,
 				effects: {
 					pixelation: [],
-					crt: ["phosphorGlow", "curvature"],
+					crt: [
+						// "phosphorGlow", 
+						"curvature"
+					],
 					glitch: [
 						"lineDisplacement",
 						"signalDropout",
@@ -31,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			effects: {
 				pixelation: {
 					enabled: true,
-					pixelSize: 10,
+					pixelSize: 7,
 					pixelShape: "square",
 					bitDepth: "none",
 					dithering: "bayer",
@@ -44,19 +47,20 @@ document.addEventListener("DOMContentLoaded", () => {
 					lineDirection: "down",
 					lineMovement: true,
 					lineSpeed: 0.001,
-					brightness: 0.25,
-					phosphorGlow: 1,
-					scanlineIntensity: 0.45,
+					brightness: 0.3, // 0.225 is what I had when I used when the mouse affected this
+					phosphorGlow: 1.5, // 0.9 is what I had when I used when the mouse affected this
+					scanlineDirection: "down",
+					scanlineIntensity: 0.4,
 					scanlineThickness: 1,
-					scanlineCount: 200,
+					scanlineCount: 350,
 					chromaticAberration: 0.7,
 				},
 				glitch: {
 					enabled: true,
 					rgbShift: 0,
-					digitalNoise: 0.5,
+					digitalNoise: 0.7,
 					lineDisplacement: 0,
-					bitCrushDepth: 4,
+					bitCrushDepth: 1,
 					signalDropoutFreq: 0.03,
 					signalDropoutSize: 0.4,
 					syncErrorFreq: 0.085,
