@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				glitch: {
 					enabled: true,
 					rgbShift: 0,
-					digitalNoise: 0.55,
+					digitalNoise: 0.45,
 					lineDisplacement: 0,
 					bitCrushDepth: 2,
 					signalDropoutFreq: 0.03,

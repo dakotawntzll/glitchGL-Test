@@ -8,10 +8,11 @@
 	--scrollbar-colors: var(--primary) var(--background-color);
 	--hero-filter: sepia(70%) hue-rotate(75deg) contrast(110%) saturate(130%);
 	--hero-text-bg: white;
+	--hero-blend-mod: screen;
 
 	--background-gradient: 
 		conic-gradient(
-			from -90deg at left bottom,
+			from -180deg at left 50dvh,
 			oklch(19.443% 0.05179 151.459 / 0.6),
 			oklch(21.553% 0.05581 145.667 / 0.8),
 			oklch(0% 0 0 / 0.85),
@@ -41,9 +42,10 @@
 		--scrollbar-colors: var(--primary) var(--background-color);
 		--hero-filter: sepia(75%) hue-rotate(75deg) brightness(130%) contrast(110%) saturate(130%) invert(100%) hue-rotate(180deg);
 		--hero-text-bg: black;
+		--hero-blend-mod: multiply;
 		--background-gradient:
 			conic-gradient(
-				from -90deg at left,
+				from -180deg at left 50dvh,
 				oklch(78.758% 0.09549 153.265 / 0.6),
 				oklch(41.539% 0.11377 144.757 / 0.8),
 				oklch(100% 0.00011 271.152 / 0.45),
@@ -87,7 +89,7 @@ html {
 }
 
 body {
-	min-height: 100dvh;
+	min-height: 400dvh;
 	
 	font-family: "Cousine", monospace;
 	line-height: 1.6;
@@ -161,7 +163,29 @@ main {
 
 	/* Have to keep this filter here to get the look I want as without it, the exclusion blending mode breaks the color*/
 	filter: var(--hero-filter);
-}
+	mix-blend-mode: var(--hero-blend-mod); 
+
+	/* Mask Bottom */
+	-webkit-mask-image: 
+		linear-gradient(
+			to bottom,
+			rgba(0, 0, 0, 1) 0%,
+			rgba(0, 0, 0, 1) 90%,
+			rgba(0, 0, 0, 0) 100%
+		);
+	-webkit-mask-size: 100% 100%;
+	-webkit-mask-repeat: no-repeat;
+
+	mask-image: 
+		linear-gradient(
+			to bottom,
+			rgba(0, 0, 0, 1) 0%,
+			rgba(0, 0, 0, 1) 90%,
+			rgba(0, 0, 0, 0) 100%
+		);
+	mask-size: 100% 100%;
+	mask-repeat: no-repeat;
+} 
 
 .hero-text-container{
 	position: relative;
@@ -222,13 +246,15 @@ main {
 
 .glitched-asset-container{
 	opacity: 0; 
-	box-shadow: 
+	transition: opacity 1000ms ease-in;
+	
+	/* box-shadow: 
 		0px 1px 5px #0f100f,
 		0px 2px 10px #0f100f,
 		0px 5px 10px #0f100f,
 		0px 7px 20px oklch(22.97% 0.0423 145.196 / 0.9),
-		0px 15px 55px oklch(35.545% 0.08218 117.335 / 0.8);
-	transition: opacity 1000ms ease-in, box-shadow 2000ms ease;
+		0px 15px 55px oklch(35.545% 0.08218 117.335 / 0.8); 
+	transition: opacity 1000ms ease-in, box-shadow 2000ms ease; */
 }
 
 .glitched-asset,
