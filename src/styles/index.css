@@ -27,7 +27,7 @@
 				oklch(100% 0.00011 271.152 / 0),
 				oklch(44.226% 0.00005 271.152 / 0.2),
 				oklch(89.449% 0.0001 271.152),
-				oklch(44.226% 0.00005 271.152 / 0.2),
+				oklch(62.793% 0.25768 29.223 / 0.3),
 				oklch(44.226% 0.00005 271.152 / 0.2)
 			),
 		url("../assets/noise.svg");
@@ -106,7 +106,7 @@ body {
 	z-index: 2;
 	color: black;
 	letter-spacing: 0.05em;
-	text-shadow: -1px 1px 5px rgb(255, 255, 255, 0.8);
+	text-shadow: -1px 1px 5px rgba(7, 53, 9, 0.8);
 	line-height: 1.2;
 }
 
@@ -177,13 +177,13 @@ main {
 	background: var(--hero-text-bg);
 	background: var(--hero-text-gradient);
 	
-	mix-blend-mode: exclusion;
+	mix-blend-mode: screen;
 
 	border-right: 5px solid rgb(127, 127, 127);
 	border-bottom: 5px solid rgb(74, 74, 74);
 	box-shadow: -5px 5px #2a2a2a;
-
 }
+
 
 .hero-text-container::after{
 	content: "";
@@ -221,7 +221,6 @@ main {
 }
 
 .glitched-asset-container{
-	filter: drop-shadow(16px 16px 20px blue);
 	opacity: 0; 
 	box-shadow: 
 		0px 1px 5px #0f100f,

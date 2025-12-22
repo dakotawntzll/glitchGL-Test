@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					lineMovement: true,
 					lineSpeed: 0.001,
 					brightness: 0.275, // 0.225 is what I had when I used when the mouse affected this
-					phosphorGlow: 0.9, // 0.9 is what I had when I used when the mouse affected this
+					phosphorGlow: 1.1, // 0.9 is what I had when I used when the mouse affected this
 					scanlineDirection: "down",
 					scanlineIntensity: 0.3,
 					scanlineThickness: 1,
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				glitch: {
 					enabled: true,
 					rgbShift: 0,
-					digitalNoise: 0.5,
+					digitalNoise: 0.55,
 					lineDisplacement: 0,
 					bitCrushDepth: 2,
 					signalDropoutFreq: 0.03,
@@ -83,8 +83,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	};
 
 	const GLITCH_LIBS = {
-		// three: "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js",
-		three: "./src/js/glitchGLFiles/three.min.js",
+		three: "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js",
+		// three: "./src/js/glitchGLFiles/three.min.js",
 		glitch: "./src/js/glitchGLFiles/glitchGL.min.js",
 	};
 
