@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					phosphorGlow: 1.25, // 0.9 is what I had when I used when the mouse affected this
 					scanlineDirection: "down",
 					scanlineIntensity: 0.3,
-					scanlineThickness: 1,
+					scanlineThickness: 10,
 					scanlineCount: 350,
 					chromaticAberration: 0.7,
 				},
