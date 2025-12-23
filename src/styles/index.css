@@ -12,7 +12,7 @@
 
 	--background-gradient: 
 		conic-gradient(
-			from -180deg at left 50dvh,
+			from -180deg at left 50vh,
 			oklch(19.443% 0.05179 151.459 / 0.6),
 			oklch(21.553% 0.05581 145.667 / 0.8),
 			oklch(0% 0 0 / 0.85),
@@ -45,7 +45,7 @@
 		--hero-blend-mod: multiply;
 		--background-gradient:
 			conic-gradient(
-				from -180deg at left 50dvh,
+				from -180deg at left 50vh,
 				oklch(78.758% 0.09549 153.265 / 0.6),
 				oklch(41.539% 0.11377 144.757 / 0.8),
 				oklch(100% 0.00011 271.152 / 0.45),
@@ -89,7 +89,7 @@ html {
 }
 
 body {
-	min-height: 400dvh;
+	min-height: 100dvh;
 	
 	font-family: "Cousine", monospace;
 	line-height: 1.6;
@@ -97,6 +97,11 @@ body {
 	
 	background: var(--background-color);
 	background: var(--background-gradient);
+}
+
+*::selection {
+	background: var(--hero-text-bg);
+	color: var(--background-color);
 }
 
 /* =================
@@ -135,7 +140,8 @@ main {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	align-items: center;
+	align-items: flex-start;
+	gap: 5em;
 }
 
 .container {
@@ -146,6 +152,7 @@ main {
 	flex-direction: column;
 	align-items: flex-start;
 }
+
 
 .hero {
 	position: relative;
@@ -170,7 +177,10 @@ main {
 		linear-gradient(
 			to bottom,
 			rgba(0, 0, 0, 1) 0%,
-			rgba(0, 0, 0, 1) 90%,
+			rgba(0, 0, 0, 1) 70%,
+			rgba(0, 0, 0, 0.95) 80%,
+			rgba(0, 0, 0, 0.85) 85%,
+			rgba(0, 0, 0, 0.5) 90%,
 			rgba(0, 0, 0, 0) 100%
 		);
 	-webkit-mask-size: 100% 100%;
@@ -180,7 +190,10 @@ main {
 		linear-gradient(
 			to bottom,
 			rgba(0, 0, 0, 1) 0%,
-			rgba(0, 0, 0, 1) 90%,
+			rgba(0, 0, 0, 1) 70%,
+			rgba(0, 0, 0, 0.95) 80%,
+			rgba(0, 0, 0, 0.85) 85%,
+			rgba(0, 0, 0, 0.5) 90%,
 			rgba(0, 0, 0, 0) 100%
 		);
 	mask-size: 100% 100%;
@@ -223,8 +236,8 @@ main {
 
 	transform-origin: left;
   	transform: scaleX(0);
-  	transition: transform 2s ease;
-	transition-delay: 1s;
+  	transition: transform 2s ease-in-out;
+	transition-delay: 2s;
 }
 
 .hero-text-inverse{
@@ -276,6 +289,7 @@ main {
 	animation-delay: 1s;
 }
 
+
 /* =================
 	Animations
 ================= */
@@ -311,7 +325,7 @@ main {
 ================= */
 
 
-@media (max-width: 50rem) {
+@media (max-width: 40rem) {
 
 	.container {
 		width: 90%;
@@ -330,9 +344,9 @@ main {
 		height: 100%;
 	}
 
-	.hero {
-		aspect-ratio: 5 / 3;
-	}
+	/* .hero {
+		aspect-ratio: 5 / 9;
+	} */
 
 	.hero-text-title {
 		font-size: 1.25rem;

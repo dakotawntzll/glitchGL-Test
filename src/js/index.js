@@ -46,9 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
 					curvature: 3,
 					lineDirection: "down",
 					lineMovement: true,
-					lineSpeed: 0.001,
-					brightness: 0.275, // 0.225 is what I had when I used when the mouse affected this
-					phosphorGlow: 1.1, // 0.9 is what I had when I used when the mouse affected this
+					lineSpeed: 0.0005,
+					brightness: 0.27, // 0.225 is what I had when I used when the mouse affected this
+					phosphorGlow: 1.25, // 0.9 is what I had when I used when the mouse affected this
 					scanlineDirection: "down",
 					scanlineIntensity: 0.3,
 					scanlineThickness: 1,
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				glitch: {
 					enabled: true,
 					rgbShift: 0,
-					digitalNoise: 0.45,
+					digitalNoise: 0.4,
 					lineDisplacement: 0,
 					bitCrushDepth: 2,
 					signalDropoutFreq: 0.03,
