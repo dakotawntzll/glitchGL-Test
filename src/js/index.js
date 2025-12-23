@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					phosphorGlow: 1.25, // 0.9 is what I had when I used when the mouse affected this
 					scanlineDirection: "down",
 					scanlineIntensity: 0.3,
-					scanlineThickness: 10,
+					scanlineThickness: 1.5,
 					scanlineCount: 350,
 					chromaticAberration: 0.7,
 				},
@@ -63,10 +63,10 @@ document.addEventListener("DOMContentLoaded", () => {
 					bitCrushDepth: 2,
 					signalDropoutFreq: 0.03,
 					signalDropoutSize: 0.4,
-					syncErrorFreq: 0.085,
-					syncErrorAmount: 0.141,
-					interferenceSpeed: 4.6,
-					interferenceIntensity: 1,
+					syncErrorFreq: 0.05, //0.085
+					syncErrorAmount: 0.05, //0.141
+					interferenceSpeed: 1,
+					interferenceIntensity: 0.1,
 					frameGhostAmount: 0.68,
 					stutterFreq: 0.4,
 					datamoshStrength: 1,
@@ -175,10 +175,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		// options
 		const cfg = {
-			dur: 900,
-			chars: '.,·-+:=*""|||[]/!?&#23456789',
+			dur: 700,
+			chars: '_.,·-+:=*""||[]/!?&#23456789|',
 			preserveSpaces: true,
-			spread: 0.5,
+			spread: 0.4,
 			...opts,
 		};
 
@@ -414,7 +414,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	const initASCIIShift = () => {
 		const targets = document.querySelectorAll(
-			".hero-text-title, .hero-text-inverse"
+			".hero-text-title, .hero-text-inverse, .nav-links, .logo-text"
 		);
 
 		targets.forEach((el) => {

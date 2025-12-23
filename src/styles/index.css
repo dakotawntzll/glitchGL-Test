@@ -4,9 +4,9 @@
 :root {
 	--primary: #0f421e;
 	--primary-heavy: #0F2210;
-	--background-color: #0f100f;
+	--background-color: rgb(10, 11, 10);
 	--background-color-low-opacity: rgba(15, 16, 15, 0.110);
-	--scrollbar-colors: var(--primary) var(--background-color-low-opacity);
+	--scrollbar-colors: var(--primary) var(--background-color);
 	--nav-link-color: white;
 	--hero-filter: sepia(70%) hue-rotate(75deg) contrast(110%) saturate(130%);
 	--hero-text-bg: white;
@@ -17,7 +17,7 @@
 
 	--background-gradient: 
 		conic-gradient(
-			from -180deg at left 50vh,
+			from -180deg at left 100vh,
 			oklch(19.443% 0.05179 151.459 / 0.6),
 			oklch(21.553% 0.05581 145.667 / 0.8),
 			oklch(0% 0 0 / 0.85),
@@ -50,9 +50,13 @@
 		--hero-filter: sepia(75%) hue-rotate(75deg) brightness(130%) contrast(110%) saturate(130%) invert(100%) hue-rotate(180deg);
 		--hero-text-bg: black;
 		--hero-blend-mod: multiply;
+
+		--mode-color: white;
+		--mode-opposite-color: black;
+
 		--background-gradient:
 			conic-gradient(
-				from -180deg at left 50vh,
+				from -180deg at left 100vh,
 				oklch(78.758% 0.09549 153.265 / 0.6),
 				oklch(41.539% 0.11377 144.757 / 0.8),
 				oklch(100% 0.00011 271.152 / 0.45),
@@ -115,15 +119,16 @@ body {
 	Typography
 ================= */
 
-.nav-links{
+.nav-links,
+.logo-text{
 	color: var(--nav-link-color);
 	text-decoration: none;
 	cursor: pointer;
-	font-size: 1.25rem;
+	font-size: 1rem;
 	padding: 0.3em 0.5em;
 	margin: 0 -0.5em;
-	font-weight: 700;
-	text-shadow: 0 0 5px var(--mode-color);
+	font-weight: 400;
+	text-shadow: 0 0 2px black;
 }
 
 .nav-links:hover,
@@ -131,6 +136,20 @@ body {
 	background-color: var(--mode-opposite-color);
 	color: var(--mode-color);
 	text-shadow: none;
+	border-radius: 0;
+	outline: transparent;				
+}
+
+.logo-link:focus,	
+.logo-link:hover > p,		
+.logo-link:focus > p{
+	outline: transparent;
+	text-decoration: underline;
+}
+
+.logo-link:focus > img,
+.logo-link:hover > img{
+	filter: invert(100%) hue-rotate(180deg) saturate(150%);
 }
 
 .hero-text{
@@ -186,10 +205,8 @@ main {
 	position: fixed;
 	width: 100vw;
 	background: var(--background-color-low-opacity);
-	padding: 1.5em 0;
+	padding: 1.2em 0 1.35em;
 	z-index: 10;
-	/* backdrop-filter: blur(3px); 
-    -webkit-backdrop-filter: blur(3px); */
 
 	/* Mask Bottom */
 	-webkit-mask-image: 
@@ -219,22 +236,30 @@ main {
 	mask-repeat: no-repeat;
 }
 
-.logo {
-	height: 4rem;
-}
-
 .main-nav{
-	display: block;
-	margin-left: auto;
+	width: 100%;
 }
 
-.main-nav ul{
+.main-nav ul,
+.logo-link,
+.nav-links{
 	list-style: none;
 	display: flex;
 	flex-direction: row;
-	justify-content: flex-start;
+	justify-content: flex-end;
 	align-items: center;
 	gap: 2em;
+	text-decoration: none;
+}	
+
+.logo-link{
+	gap: 0.5em;
+	margin-right: auto;
+}
+
+.logo {
+	width: 3.5rem;
+	margin-left: -0.8em;
 }
 
 .hero {
@@ -411,6 +436,18 @@ main {
 
 	.container {
 		width: 90%;
+	}
+
+	.nav-links{
+		font-size: 0.75rem;
+	}
+
+	.logo-text{
+		display: none;
+	}
+
+	.logo{
+		width: 3rem;
 	}
 
 	.hero-text-container{
