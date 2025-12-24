@@ -414,7 +414,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		targets.forEach((el) => {
 			if (!el.textContent.trim()) return;
 
-			const inst = createASCIIShift(el, { dur: 900, spread: 1 });
+			const inst = createASCIIShift(el, { dur: 700, spread: 1 });
 			asciiInstances.set(el, inst);
 		});
 	};
