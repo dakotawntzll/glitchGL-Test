@@ -1,12 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-
 	// ---------------------- Glitch effect initialization ----------------------
 
 	const initGlitch = () => {
-
-		const sizeCursor = (window.innerWidth > window.innerHeight)
-			? "100vw"
-			: "100vh";
+		const sizeCursor =
+			window.innerWidth > window.innerHeight ? "100vw" : "100vh";
 
 		glitchGL({
 			target: ".glitchGL",
@@ -18,8 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
 				effects: {
 					pixelation: [],
 					crt: [
-						// "phosphorGlow", 
-						"curvature"
+						// "phosphorGlow",
+						"curvature",
 					],
 					glitch: [
 						"lineDisplacement",
@@ -148,10 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	onIdle(() => bootGlitch().catch(console.error));
 
-
-
 	// ---------------------- ASCII ripple animation ----------------------
-
 
 	// Constants for wave animation behavior
 	const WAVE_THRESH = 2;
@@ -414,20 +408,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	const initASCIIShift = () => {
 		const targets = document.querySelectorAll(
-			".hero-text-title, .hero-text-inverse, .nav-links, .logo-text"
+			".hero-text-title, .hero-text-inverse, .nav-links, .logo-text, .social-link"
 		);
 
 		targets.forEach((el) => {
 			if (!el.textContent.trim()) return;
 
-			const inst = createASCIIShift(el, { dur: 1000, spread: 1 });
+			const inst = createASCIIShift(el, { dur: 900, spread: 1 });
 			asciiInstances.set(el, inst);
 		});
 	};
 
 	initASCIIShift(); // End of ASCII shift initialization
-	
-
 
 	// ---------------------- Animation Fade Ins ----------------------
 
@@ -453,4 +445,78 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 
 	fadeEls.forEach((el) => fadeObserver.observe(el));
+
+
+	// ---------------------- Social dropdown ----------------------
+
+	const logoItem = document.querySelector(".logo-item");
+	const logoBtn = document.querySelector(".logo-trigger");
+	
+	function setMenu(state) {
+		logoItem.classList.toggle("is-open", state);
+		logoBtn.setAttribute("aria-expanded", state ? "true" : "false");
+	};
+
+	logoBtn.addEventListener("click", (e) => {
+		e.preventDefault();
+		e.stopPropagation(); 
+		setMenu(true);
+	});
+
+	logoItem.addEventListener("focusin", () => {
+		setMenu(true);
+	});
+
+	logoItem.addEventListener("focusout", () => {
+		requestAnimationFrame(() => {
+			if (!logoItem.contains(document.activeElement)) {
+				setMenu(false);
+			};
+		});
+	});
+
+	document.addEventListener("keydown", (e) => {
+		if (e.key === "Escape"){
+			setMenu(false);
+			logoBtn.focus();
+		};
+	});
+
+	document.addEventListener("click", (e) => {
+		if (!logoItem.contains(e.target)){
+			setMenu(false);
+		};
+	});
+
+	// ---------------------- Logo Scroll Animation ----------------------
+
+	const logoImg = document.querySelector(".logo");
+	if (logoImg) {
+		let ticking = false;
+
+		const updateLogoRotation = () => {
+			const scrollTop =
+				window.scrollY || document.documentElement.scrollTop;
+			const maxScroll =
+				document.documentElement.scrollHeight - window.innerHeight || 1;
+
+			const progress = scrollTop / maxScroll; // 0 -> 1
+			const turns = 1; // 1 = 360°, 2 = 720°, etc.
+			const deg = progress * 360 * turns;
+
+			logoImg.style.transform = `rotate(${deg}deg)`;
+			ticking = false;
+		};
+
+		const onScroll = () => {
+			if (ticking) return;
+			ticking = true;
+			requestAnimationFrame(updateLogoRotation);
+		};
+
+		updateLogoRotation(); // set initial
+		window.addEventListener("scroll", onScroll, { passive: true });
+		window.addEventListener("resize", updateLogoRotation);
+	}
+
 });

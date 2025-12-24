@@ -21,11 +21,13 @@
 		<meta property="og:site_name" content="Dakota — Front-End Developer">
 		<meta property="og:locale" content="en_US">
 
-		<link rel="preload" as="image" href="./src/assets/noise.svg" type="image/svg+xml">
-
-		<link rel="preconnect" href="https://fonts.googleapis.com">
+		
+		<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&display=swap" rel="stylesheet"> -->
+		
+		<link rel="preload" as="image" href="./src/assets/noise.svg" type="image/svg+xml">
+		<link rel="preload" href="./src/assets/fonts/Cousine/Cousine-Regular.ttf" as="font" type="font/ttf" crossorigin/>
 		<link rel="stylesheet" href="./src/styles/index.css">
 
 	</head>
@@ -37,13 +39,9 @@
 			<header class="main-header">
 				<div class="container">
 					<nav class="main-nav">
-						<ul>
-							<li class="logo-link">
-								<a href="#"  class="logo-link"> 
-									<img src="./src/assets/AnimatedLogo.webp" alt="Website Logo" class="logo"/>
-									<p class="logo-text" aria-label="Dakota">My_Socials</p>
-								</a>
-							</li>
+						<ul class="main-nav-ul">
+
+							<!-- Note: I put these first in the mark up since it makes much more sense for keyboard navigators -->
 							<li>
 								<a href="#" class="nav-links" aria-label="Home">Home</a> 
 							</li>
@@ -52,6 +50,54 @@
 							</li>
 							<li>
 								<a href="#" class="nav-links"  aria-label="Experience">Experience</a>
+							</li>
+
+							<li class="logo-item">
+								<button type="button" class="logo-trigger" aria-haspopup="menu" aria-expanded="false" aria-controls="social-menu">
+									<img src="./src/assets/AnimatedLogo.webp" alt="Website Logo" class="logo" />
+									<span class="logo-text" aria-label="Dakota">My_Links</span>
+								</button>
+							
+								<ul id="social-menu" class="social-menu" role="menu" aria-label="My socials">
+									<li role="none">
+										<a
+											role="menuitem"
+											class="social-link"
+											href="mailto:dakotawntzll@gmail.com"
+											aria-label="Send me an email"
+										>Email_Me</a>
+									</li>
+									<li role="none">
+										<a 
+											role="menuitem" 
+											class="social-link" 
+											href="https://www.linkedin.com/in/dakota-wentzell/" 
+											target="_blank" 
+											rel="noopener noreferrer" 
+											aria-label="Link to My LinkedIn"
+										>LinkedIn</a>
+									</li>
+									<li role="none">
+										<a 
+											role="menuitem" 
+											class="social-link" 
+											href="https://codepen.io/ddubs52" 
+											target="_blank" 
+											rel="noopener noreferrer" 
+											aria-label="Link to My CodePen"
+										>CodePen</a>
+									</li>
+									<li role="none">
+										<a 
+											role="menuitem" 
+											class="social-link" 
+											href="https://www.github.com/dakotawntzll" 
+											target="_blank" 
+											rel="noopener noreferrer" 
+											aria-label="Link to My Github"
+										>GitHub</a>
+									</li>
+								</ul>
 							</li>
 						</ul>
 					</nav>
