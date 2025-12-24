@@ -297,8 +297,9 @@ main {
 
 .logo {
 	display: block;
-	height: auto;
+	height: 3.5rem;
 	width: 3.5rem;
+	object-fit: cover;
 	margin-left: -0.85em;
 
 	transform-origin: 50% 50%;
@@ -565,6 +566,8 @@ main {
 
 	.logo{
 		width: 3.3rem;
+		height: 3.3rem;
+		object-fit: cover;
 		margin-left: -0.8em;
 	}
 
