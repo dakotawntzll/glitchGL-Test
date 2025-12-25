@@ -450,27 +450,29 @@ document.addEventListener("DOMContentLoaded", () => {
 	// ---------------------- Social dropdown ----------------------
 
 	const logoItem = document.querySelector(".logo-item");
-	const logoBtn = document.querySelector(".logo-trigger");
+	const logoBtn = document.querySelector("#logo-trigger");
 	
 	function setMenu(state) {
 		logoItem.classList.toggle("is-open", state);
 		logoBtn.setAttribute("aria-expanded", state ? "true" : "false");
 	};
 
-	logoBtn.addEventListener("click", (e) => {
+	// logoBtn.addEventListener("click", (e) => {
+	// 	// e.preventDefault();
+	// 	// e.stopPropagation(); 
+	// 	setMenu(false);
+	// });
+
+	logoItem.addEventListener("focusin", (e) => {
 		e.preventDefault();
 		e.stopPropagation(); 
-		setMenu(true);
-	});
-
-	logoItem.addEventListener("focusin", () => {
 		setMenu(true);
 	});
 
 	logoItem.addEventListener("focusout", () => {
 		requestAnimationFrame(() => {
 			if (!logoItem.contains(document.activeElement)) {
-				setMenu(false);
+				setMenu(false);	
 			};
 		});
 	});

@@ -1,7 +1,7 @@
 /* =================
 	Fonts
 ================= */
-/* @font-face {
+@font-face {
 	font-family: "Cousine";
 	src: url("../assets/fonts/Cousine/Cousine-Regular.ttf") format("truetype");
 	font-weight: 400;
@@ -15,7 +15,7 @@
 	font-weight: 700;
 	font-style: normal;
 	font-display: swap;
-} */
+}
 
 /* =================
 	Colors & Variables
@@ -60,11 +60,11 @@
 	--header-gradient:
 		linear-gradient(
 			to bottom,
-			rgba(10, 11, 10, 0.1) 0%,
-			rgba(10, 11, 10, 0.1) 70%,
-			rgba(10, 11, 10, 0.095) 80%,
-			rgba(10, 11, 10, 0.085) 85%,
-			rgba(10, 11, 10, 0.05) 90%,
+			rgba(10, 11, 10, 0.45) 0%,
+			rgba(10, 11, 10, 0.2) 40%,
+			rgba(10, 11, 10, 0.1) 60%,
+			rgba(10, 11, 10, 0.075) 70%,
+			rgba(10, 11, 10, 0.035) 80%,
 			rgba(10, 11, 10, 0) 100%
 		);
 }
@@ -89,7 +89,7 @@
 				from -180deg at left 50vh,
 				oklch(78.758% 0.09549 153.265 / 0.6),
 				oklch(41.539% 0.11377 144.757 / 0.8),
-				oklch(100% 0.00011 271.152 / 0.45),
+				oklch(97.614% 0.00011 271.152 / 0.45),
 				oklch(79.318% 0.03535 145.351 / 0.5),
 				oklch(78.758% 0.09549 153.265 / 0.6)
 			),
@@ -98,12 +98,12 @@
 		--header-gradient:
 			linear-gradient(
 				to bottom,
-				rgba(224, 232, 220 0.1) 0%,
-				rgba(224, 232, 220 0.1) 70%,
-				rgba(224, 232, 220 0.095) 80%,
-				rgba(224, 232, 220 0.085) 85%,
-				rgba(224, 232, 220 0.05) 90%,
-				rgba(224, 232, 220 0) 100%
+				rgba(224, 232, 220, 0.45) 0%,
+				rgba(224, 232, 220, 0.2) 40%,
+				rgba(224, 232, 220, 0.1) 60%,
+				rgba(224, 232, 220, 0.075) 70%,
+				rgba(224, 232, 220, 0.035) 80%,
+				rgba(224, 232, 220, 0) 100%
 			);
 	}
 }
@@ -167,10 +167,13 @@ body {
 	text-decoration: none;
 	cursor: pointer;
 	font-size: 1rem;
-	padding: 0.3em 0.75em;
-	margin: 0 -0.75em;
+	padding: 0.4em 0.8em;
+	margin: 0 -0.8em; 
 	font-weight: 400;
-	text-shadow: 0 0 2px var(--mode-opposite-color);
+	text-shadow: 
+		0 0 2px var(--mode-opposite-color),
+		0 0 5px var(--mode-color),
+		0 0 10px var(--mode-color);
 }
 
 .nav-links:hover,
@@ -179,7 +182,7 @@ body {
 	color: var(--mode-color);
 	text-shadow: none;
 	border-radius: 0;
-	outline: transparent;				
+	outline: transparent;			
 }
 
 .logo-trigger:focus,
@@ -255,7 +258,8 @@ main {
 	position: fixed;
 	width: 100vw;
 	background: var(--header-gradient);
-	padding: 1.2em 0 1.35em;
+	/* background-color: rgb(0, 19, 35); */
+	padding: 0.75em 0;
 	z-index: 10;
 }
 
@@ -272,7 +276,9 @@ main {
 	align-items: center;
 	gap: 2em;
 	text-decoration: none;
-}	
+}
+
+
 
 .logo-item {
 	position: relative;
@@ -552,8 +558,12 @@ main {
 		width: 90%;
 	}
 
+	.main-header{
+		padding: 0.5em 0;
+	}
+
 	.nav-links{
-		font-size: 0.75rem;
+		font-size: 0.85rem;
 	}
 
 	.main-nav-ul{
@@ -565,10 +575,10 @@ main {
 	}
 
 	.logo{
-		width: 3.3rem;
-		height: 3.3rem;
+		width: 3rem;
+		height: 3rem;
 		object-fit: cover;
-		margin-left: -0.4em;
+		margin-left: -0.365em;
 	}
 
 	.social-link {
