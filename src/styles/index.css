@@ -162,7 +162,7 @@ body {
 
 .nav-links,
 .logo-text,
-.logo-trigger {
+.links-container-btn {
 	color: var(--nav-link-color);
 	text-decoration: none;
 	cursor: pointer;
@@ -185,15 +185,15 @@ body {
 	outline: transparent;			
 }
 
-.logo-trigger:focus,
-.logo-trigger:hover > .logo-text,
-.logo-trigger:focus > .logo-text{
+.links-container-btn:focus,
+.links-container-btn:hover > .logo-text,
+.links-container-btn:focus > .logo-text{
 	outline: transparent;
 	text-decoration: underline;
 }
 
-.logo-trigger:focus > img,
-.logo-trigger:hover > img{
+.links-container-btn:focus > img,
+.links-container-btn:hover > img{
 	filter: invert(100%) hue-rotate(180deg) saturate(150%);
 }
 
@@ -280,14 +280,14 @@ main {
 
 
 
-.logo-item {
+.links-container {
 	position: relative;
 	list-style: none;
 	margin-right: auto;
 	order: -1;
 }
 
-.logo-trigger {
+.links-container-btn {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -312,14 +312,23 @@ main {
 	will-change: transform;
 }
 
-.logo-trigger:hover .logo{
-	animation: logo-spin 400ms cubic-bezier(.34,.07,.65,.97);
+.links-container-btn .logo {
+	animation: none;
 }
 
-/* .logo-trigger:not(:hover) .logo {
-	animation: logo-spin 750ms cubic-bezier(.64,.06,.44,.99);
-} */
+.links-container-btn:hover .logo,
+.links-container-btn:active .logo {
+	animation-name: logo-spin;
+	animation-duration: 400ms;
+	animation-timing-function: cubic-bezier(.34, .07, .65, .97);
+	animation-iteration-count: 1;
+}
 
+.links-container-btn:active .logo {
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	animation-duration: 550ms;
+}
 
 .social-menu {
 	position: absolute;
@@ -508,19 +517,19 @@ main {
 	transform: translateY(0);
 }
 
-.logo-item.is-open:focus-within > .social-menu{
+.links-container.is-open:focus-within > .social-menu{
 	opacity: 1;
 	transform: translateY(0);
 	pointer-events: auto;
 }
 
-.logo-item:hover>.social-menu {
+/* .links-container:hover>.social-menu {
 	opacity: 1;
 	transform: translateY(0);
 	pointer-events: auto;
-}
+} */
 
-.logo-item.is-open>.social-menu {
+.links-container.is-open>.social-menu {
 	opacity: 1;
 	transform: translateY(0);
 	pointer-events: auto;

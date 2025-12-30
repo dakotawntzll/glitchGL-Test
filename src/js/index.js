@@ -74,53 +74,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// ---------------------- Lazy load section  ----------------------
 
-	const SELECTORS = {
-		video: ".glitched-asset",
-		container: ".glitched-asset-container",
-	};
-
 	const GLITCH_LIBS = {
 		// three: "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js",
 		three: "./src/js/glitchGLFiles/three.min.js",
 		glitch: "./src/js/glitchGLFiles/glitchGL.min.js",
 	};
 
-	const onIdle = (fn, timeout = 2000) => {
+	const runWhenIdle = (fn, timeout = 2000) => {
 		if ("requestIdleCallback" in window) {
 			requestIdleCallback(fn, { timeout });
 		} else {
-			setTimeout(fn, 1);
+			setTimeout(fn, 10);
 		}
 	};
 
-	const loadedScripts = new Map();
+	const scriptPromises = new Map();
 
 	const loadScript = (src) => {
-		if (loadedScripts.has(src)) return loadedScripts.get(src);
+		if (scriptPromises.has(src)) return scriptPromises.get(src);
 
 		const p = new Promise((resolve, reject) => {
 			const s = document.createElement("script");
 			s.src = src;
-			s.async = true;
+			s.async = false; // keep ordered execution for three -> glitchGL
 			s.onload = resolve;
 			s.onerror = () => reject(new Error(`Failed to load: ${src}`));
 			document.head.appendChild(s);
 		});
 
-		loadedScripts.set(src, p);
+		scriptPromises.set(src, p);
 		return p;
 	};
 
 	const whenVideoCanPlay = (video) => {
-		if (!video || video.readyState >= 2) return Promise.resolve();
+
+		// 0 HAVE_NOTHING | 1 HAVE_METADATA | 2 HAVE_CURRENT_DATA | 
+		// 3 HAVE_FUTURE_DATA | 4 HAVE_ENOUGH_DATA
+		if (video.readyState >= 2) return Promise.resolve();
+
 		return new Promise((resolve) =>
 			video.addEventListener("canplay", resolve, { once: true })
 		);
 	};
 
 	const setGlitchReady = () => {
-		const container = document.querySelector(SELECTORS.container);
-		if (!container) return;
+		const container = document.querySelector(".glitched-asset-container");
 
 		requestAnimationFrame(() => {
 			requestAnimationFrame(() => {
@@ -129,21 +127,21 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	};
 
-	const bootGlitch = async () => {
-		const video = document.querySelector(SELECTORS.video);
+	runWhenIdle(async () => {
+		try {
+			const video = document.getElementById("glitched-asset");
 
-		await Promise.all([
-			loadScript(GLITCH_LIBS.three),
-			loadScript(GLITCH_LIBS.glitch),
-		]);
+			await loadScript(GLITCH_LIBS.three);
+			await loadScript(GLITCH_LIBS.glitch);
 
-		await whenVideoCanPlay(video);
+			await whenVideoCanPlay(video);
 
-		initGlitch();
-		setGlitchReady();
-	};
-
-	onIdle(() => bootGlitch().catch(console.error));
+			initGlitch();
+			setGlitchReady();
+		} catch (err) {
+			console.error(err);
+		}
+	});
 
 	// ---------------------- ASCII ripple animation ----------------------
 
@@ -446,49 +444,61 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	fadeEls.forEach((el) => fadeObserver.observe(el));
 
+	// ---------------------- My Links dropdown ----------------------
 
-	// ---------------------- Social dropdown ----------------------
+	const linksContainer = document.querySelector(".links-container");
+	const linksContainerBtn = document.querySelector(".links-container-btn");
+	let linksContainerOpen = false;
+	let suppressNextClickToggle = false;
 
-	const logoItem = document.querySelector(".logo-item");
-	const logoBtn = document.querySelector("#logo-trigger");
-	
 	function setMenu(state) {
-		logoItem.classList.toggle("is-open", state);
-		logoBtn.setAttribute("aria-expanded", state ? "true" : "false");
-	};
+		if (linksContainerOpen === state) return;
+		
+		linksContainer.classList.toggle("is-open", state);
+		linksContainerBtn.setAttribute("aria-expanded", state ? "true" : "false");
+		linksContainerOpen = state;
 
-	// logoBtn.addEventListener("click", (e) => {
-	// 	// e.preventDefault();
-	// 	// e.stopPropagation(); 
-	// 	setMenu(false);
-	// });
+		console.log(linksContainerOpen)
+	}
 
-	logoItem.addEventListener("focusin", (e) => {
-		e.preventDefault();
-		e.stopPropagation(); 
+	linksContainerBtn.addEventListener("click", () => {
+		if (suppressNextClickToggle) {
+			suppressNextClickToggle = false;
+			return;
+		}
+		setMenu(!linksContainerOpen);
+	});
+	
+	linksContainerBtn.addEventListener("mouseenter", () => {
+		if (!linksContainerOpen) suppressNextClickToggle = true;
+  		setMenu(true);
+	});
+	
+	linksContainer.addEventListener("mouseleave", () => {
+		if (!linksContainerOpen) return;
+		setMenu(false);
+		suppressNextClickToggle = false; 
+	});
+
+	linksContainer.addEventListener("focusin", () => {
 		setMenu(true);
 	});
-
-	logoItem.addEventListener("focusout", () => {
+	
+	linksContainer.addEventListener("focusout", () => {
 		requestAnimationFrame(() => {
-			if (!logoItem.contains(document.activeElement)) {
-				setMenu(false);	
-			};
+			if (!linksContainer.contains(document.activeElement)) {
+				setMenu(false);
+			}
 		});
 	});
-
+	
 	document.addEventListener("keydown", (e) => {
-		if (e.key === "Escape"){
+		if (e.key === "Escape") {
 			setMenu(false);
-			logoBtn.focus();
-		};
+			// linksContainerBtn.focus(); Note: Once other elements are in, might want to adjust this.
+		}
 	});
-
-	document.addEventListener("click", (e) => {
-		if (!logoItem.contains(e.target)){
-			setMenu(false);
-		};
-	});
+	
 
 	// ---------------------- Logo Scroll Animation ----------------------
 
@@ -520,5 +530,4 @@ document.addEventListener("DOMContentLoaded", () => {
 		window.addEventListener("scroll", onScroll, { passive: true });
 		window.addEventListener("resize", updateLogoRotation);
 	}
-
 });
