@@ -332,6 +332,7 @@ main {
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
 	animation-duration: 550ms;
+	animation-delay: 800ms;
 }
 
 .social-menu {

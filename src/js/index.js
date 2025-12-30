@@ -1,5 +1,6 @@
-
+// --------------------------------------------------------------------------
 // ---------------------- Glitch effect initialization ----------------------
+// --------------------------------------------------------------------------
 
 const initGlitch = () => {
 	const sizeCursor =
@@ -72,7 +73,9 @@ const initGlitch = () => {
 	});
 };
 
+// ----------------------------------------------------------------
 // ---------------------- Lazy load section  ----------------------
+// ----------------------------------------------------------------
 
 const GLITCH_LIBS = {
 	// three: "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js",
@@ -142,11 +145,15 @@ runWhenIdle(async () => {
 	}
 });
 
+// ----------------------------------------------------------------
 // ---------------------- ASCII Shift Effect ----------------------
+// ----------------------------------------------------------------
 
 window.initASCIIShift();
 
+// ----------------------------------------------------------------
 // ---------------------- Animation Fade Ins ----------------------
+// ----------------------------------------------------------------
 
 const fadeEls = document.querySelectorAll(".fade-in");
 const fadeObserver = new IntersectionObserver((entries) => {
@@ -171,7 +178,9 @@ const fadeObserver = new IntersectionObserver((entries) => {
 
 fadeEls.forEach((el) => fadeObserver.observe(el));
 
+// ---------------------------------------------------------------
 // ---------------------- My Links dropdown ----------------------
+// ---------------------------------------------------------------
 
 const linksContainer = document.querySelector(".links-container");
 const linksContainerBtn = document.querySelector(".links-container-btn");
@@ -229,7 +238,9 @@ document.addEventListener("keydown", (e) => {
 	}
 });
 
+// -------------------------------------------------------------------
 // ---------------------- Logo Scroll Animation ----------------------
+// -------------------------------------------------------------------
 
 const logoImg = document.querySelector(".logo");
 if (logoImg) {
