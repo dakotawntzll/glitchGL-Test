@@ -184,6 +184,7 @@ fadeEls.forEach((el) => fadeObserver.observe(el));
 
 const linksContainer = document.querySelector(".links-container");
 const linksContainerBtn = document.querySelector(".links-container-btn");
+const socialMenu = document.querySelector("#social-menu");
 let linksContainerOpen = false;
 let suppressNextClickToggle = false;
 
@@ -191,10 +192,8 @@ function setMenu(state) {
 	if (linksContainerOpen === state) return;
 
 	linksContainer.classList.toggle("is-open", state);
-	linksContainerBtn.setAttribute(
-		"aria-expanded",
-		state ? "true" : "false"
-	);
+	linksContainerBtn.setAttribute("aria-expanded", state ? "true" : "false");
+	socialMenu.hidden = !state;
 	linksContainerOpen = state;
 
 	// console.log(linksContainerOpen)
