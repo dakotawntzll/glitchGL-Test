@@ -458,7 +458,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		linksContainerBtn.setAttribute("aria-expanded", state ? "true" : "false");
 		linksContainerOpen = state;
 
-		console.log(linksContainerOpen)
+		// console.log(linksContainerOpen)
 	}
 
 	linksContainerBtn.addEventListener("click", () => {

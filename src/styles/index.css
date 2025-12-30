@@ -3,7 +3,9 @@
 ================= */
 @font-face {
 	font-family: "Cousine";
-	src: url("../assets/fonts/Cousine/Cousine-Regular.ttf") format("truetype");
+	src: 
+		url("../assets/fonts/Cousine/Cousine-Regular.woff2") format('woff2'),
+		url("../assets/fonts/Cousine/Cousine-Regular.ttf") format("truetype");
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -11,7 +13,9 @@
 
 @font-face {
 	font-family: "Cousine";
-	src: url("../assets/fonts/Cousine/Cousine-Bold.ttf") format("truetype");
+	src: 
+		url("../assets/fonts/Cousine/Cousine-Bold.woff2") format('woff2'),
+		url("../assets/fonts/Cousine/Cousine-Bold.ttf") format("truetype");
 	font-weight: 700;
 	font-style: normal;
 	font-display: swap;
